@@ -14,9 +14,7 @@ type AuthPayload {
   user: User
 }
 
-type Subscription {
-  newLink: Link
-}
+
 
 type User {
   id: ID!

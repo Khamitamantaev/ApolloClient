@@ -5,20 +5,22 @@ const path = require("path");
 const { getUserId } = require("./utils");
 const prisma = new PrismaClient();
 
-const Query = require('./resolvers/Query')
-const Mutation = require('./resolvers/Mutation')
-const User = require('./resolvers/User')
-const Link = require('./resolvers/Link')
-const { PubSub } = require('apollo-server') //Реализация подписок GraphQL
+const Query = require("./resolvers/Query");
+const Mutation = require("./resolvers/Mutation");
+const User = require("./resolvers/User");
+const Link = require("./resolvers/Link");
+// const { PubSub } = require("apollo-server"); //Реализация подписок GraphQL
 //Подписки - это функция GraphQL, которая позволяет серверу отправлять данные своим клиентам
+const Subscription = require("./resolvers/Subscription");
 
-const pubsub = new PubSub()
+// const pubsub = new PubSub();
 
 const resolvers = {
   Query,
   Mutation,
+  Subscription,
   User,
-  Link
+  Link,
 };
 
 // 3
@@ -29,7 +31,7 @@ const server = new ApolloServer({
     return {
       ...req,
       prisma,
-      pubsub,
+      // pubsub,
       userId: req && req.headers.authorization ? getUserId(req) : null,
     };
   },
