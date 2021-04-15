@@ -25,7 +25,5 @@ model User {
   name      String
   email     String   @unique
   password  String
-  profession String
-  onvacation Boolean
   links     Link[]
 }
